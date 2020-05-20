@@ -59,7 +59,7 @@ You should select 12 / 15 / 18 / 21 or 24 (recommended) words using dice rolls a
 result is not in the list, just ignore and continue. Some combinations are excluded for uniform probability distribution.
 
 Five dices with 6 sides give 6 ^ 5 = 7776 possible combinations. Wordlist is 2048 words, that overlaps three times range 
-for  7776 combinations, with 2048 * 3 = 6144 good values, rest range [6144, 7776] are excluded.
+for  7776 combinations, with 2048 * 3 = 6144 good values, rest range (6144, 7776] are excluded.
 Each word in the table corresponds to 3 roll combinations.
 
 
