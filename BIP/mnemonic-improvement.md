@@ -18,7 +18,7 @@ This BIP describes development recommendations for the generation of determinist
 
 Mnemonic codes proposed in BIP39 are the most successful solution for storing secret keys. 
 A key factor is the use of a human-readable format and the zero chance of information loss due to typos.
-This beep is aimed at solving the problem by storing the code by dividing it into parts according 
+This BIP is aimed at solving the problem by storing the code by dividing it into parts according 
 to the threshold scheme for sharing the secret, as well as a description of how the mnemonic code 
 can be generated manually without trusting any hardware/software random generators. Scope of application of this BIP 
 is creation and storage cryptocurrency wallets for personal use.
