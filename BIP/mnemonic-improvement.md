@@ -70,6 +70,39 @@ metal backups that allow you to save information after exposure to aggressive en
 But this approach does not protect mnemonic code against theft or single point trust problem. 
 Threshold secret sharing scheme significantly improve secure backup storage against single point trust problem.
 
+In cryptography, several secret sharing schemes are known. The most famous are the Shamir's secret scheme and Blakley's scheme.
+This BIP is based on the Shamir's scheme. With a more detailed description of Shamir's scheme, scan be found on 
+[Wikipedia](https://en.wikipedia.org/wiki/Shamir%27s_Secret_Sharing).
+
+There are already exists two great implementation of the Shamir scheme for mnemonic codes. First one is 
+[SLIP39](https://github.com/satoshilabs/slips/blob/master/slip-0039.md) from Satoshi Labs,
+and second one is [shamir39](https://github.com/iancoleman/shamir39/blob/master/specification.md) from 
+[iancoleman](https://github.com/iancoleman).
+
+The main idea in creating this BIP is to create the most simple and understandable scheme for mass use.
+SLIP39 is a complicated scheme with division into groups and division within groups into shares, checksum is used to validate shares. 
+This scheme is more likely focused on corporate users. Iancoleman scheme is more simple and more suitable for mass use.
+
+This BIP propose technical implementation Shamir's secret sharing scheme applied separately to each byte of the 
+shared secret and GF(256) is used as the underlying finite field. Secret stored in share f(0). On GF(256) finite field 
+255 shares is maximal possible. For the need for personal use, this is more than enough.
+Share index (x coordinate) should be randomly selected to prevent any information leak about sharing split schema.
+
+### Mnemonic code share
+
+The share in appearance and format should not differ from the usual mnemonic code, to protect privacy. 
+To recover the mnemonic code from shares, you need to store and know the share indexes (x coordinate). 
+Since the index is randomly selected and the checksum designed in BIP 39 is redundant, the index can 
+be written into bits reserved for checksum without any leaks about splitting scheme and breaking existed design. 
+Since the number of bits for checksum varies depending on the number of words of the mnemonic code, we have 
+a limit for the maximum number of total shares in the secret sharing scheme, depending on the length of the mnemonic code word.
+
+    - 12 words: 4 bits -> 15 total shares
+    - 15 words: 5 bits -> 31 total shares
+    - 18 words: 6 bits -> 63 total shares
+    - 21 words: 7 bits -> 127 total shares
+    - 24 words: 8 bits -> 255 total shares
+
 
 to be continued ...
 
