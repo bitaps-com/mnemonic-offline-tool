@@ -109,6 +109,7 @@ Range for random index selection MUST be limited by maximal number of total shar
 
 
 <code>
+
     S.__split_secret = (threshold, total,  secret, indexBits=8) => {
         if (threshold > 255) throw new Error("threshold limit 255");
         if (total > 255) throw new Error("total limit 255");
@@ -117,7 +118,6 @@ Range for random index selection MUST be limited by maximal number of total shar
         if (threshold > total) throw new Error("invalid threshold");
         let shares = {};
         let sharesIndexes = [];
-
         let e = S.generateEntropy({hex:false});
         let ePointer = 0;
         let i = 0;
