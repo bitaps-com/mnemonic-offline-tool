@@ -103,8 +103,68 @@ a limit for the maximum number of total shares in the secret sharing scheme, dep
     - 21 words: 7 bits -> 127 total shares
     - 24 words: 8 bits -> 255 total shares
 
+Range for random index selection MUST be limited by maximal number of total shares.
 
-to be continued ...
+### Example of implementation
+
+
+<code>
+    S.__split_secret = (threshold, total,  secret, indexBits=8) => {
+        if (threshold > 255) throw new Error("threshold limit 255");
+        if (total > 255) throw new Error("total limit 255");
+        let index_mask = 2**indexBits - 1;
+        if (total > index_mask) throw new Error("index bits is to low");
+        if (threshold > total) throw new Error("invalid threshold");
+        let shares = {};
+        let sharesIndexes = [];
+
+        let e = S.generateEntropy({hex:false});
+        let ePointer = 0;
+        let i = 0;
+        let index;
+
+        // generate random indexes (x coordinate)
+        do {
+           if (ePointer >= e.length) {
+               // get more 32 bytes entropy
+               e = S.generateEntropy({hex:false});
+               ePointer = 0;
+           }
+           index = e[ePointer] & index_mask;
+           if ((shares[index] === undefined)&&(index !== 0)) {
+               i++;
+               shares[index] = BF([]);
+               sharesIndexes.push(index)
+           }
+           ePointer++;
+        } while (i !== total);
+
+        e = S.generateEntropy({hex:false});
+        ePointer = 0;
+
+        let w;
+        for (let b = 0; b < secret.length; b++) {
+            let q = [secret[b]];
+            for (let i = 0; i < threshold - 1; i++) {
+                do {
+                    if (ePointer >= e.length) {
+                        ePointer = 0;
+                        e = S.generateEntropy({hex:false});
+                    }
+                    w  = e[ePointer++];
+                } while (q.includes(w));
+                q.push(w);
+            }
+            for (let i of sharesIndexes)
+                shares[i] = BC([shares[i], BF([S.__shamirFn(i, q)])]);
+
+        }
+        return shares;
+    };
+</code>
+
+[shamir_secret_sharing.js](https://github.com/bitaps-com/jsbtc/blob/master/src/functions/shamir_secret_sharing.js)
+[bip39_mnemonic.js](https://github.com/bitaps-com/jsbtc/blob/master/src/functions/bip39_mnemonic.js)
 
 
 
