@@ -161,9 +161,12 @@ Range for random index selection MUST be limited by maximal number of total shar
         }
         return shares;
     };
+    
 </code>
 
+
 [shamir_secret_sharing.js](https://github.com/bitaps-com/jsbtc/blob/master/src/functions/shamir_secret_sharing.js)
+
 [bip39_mnemonic.js](https://github.com/bitaps-com/jsbtc/blob/master/src/functions/bip39_mnemonic.js)
 
 
