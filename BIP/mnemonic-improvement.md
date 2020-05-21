@@ -122,7 +122,6 @@ Range for random index selection MUST be limited by maximal number of total shar
         let ePointer = 0;
         let i = 0;
         let index;
-
         // generate random indexes (x coordinate)
         do {
            if (ePointer >= e.length) {
@@ -141,7 +140,6 @@ Range for random index selection MUST be limited by maximal number of total shar
 
         e = S.generateEntropy({hex:false});
         ePointer = 0;
-
         let w;
         for (let b = 0; b < secret.length; b++) {
             let q = [secret[b]];
@@ -163,7 +161,6 @@ Range for random index selection MUST be limited by maximal number of total shar
     };
     
 </code>
-
 
 [shamir_secret_sharing.js](https://github.com/bitaps-com/jsbtc/blob/master/src/functions/shamir_secret_sharing.js)
 
