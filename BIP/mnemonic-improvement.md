@@ -168,5 +168,8 @@ Range for random index selection MUST be limited by maximal number of total shar
 
 [bip39_mnemonic.js](https://github.com/bitaps-com/jsbtc/blob/master/src/functions/bip39_mnemonic.js)
 
+## References
 
-
+* [Tool for mnemonic code generation/splitting](https://bitaps.com/mnemonic)
+* [Offline version: Tool for mnemonic code generation/splitting](https://bitaps.com/mnemonic/offline)
+* [BIP39 Dice word list](https://bitaps.com/dice/wordlist)

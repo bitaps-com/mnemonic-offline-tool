@@ -36,13 +36,13 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="md" value="3455" />
+          <entry key="md" value="3543" />
           <entry key="txt" value="29" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Markdown" value="3455" />
+          <entry key="Markdown" value="3543" />
           <entry key="PLAIN_TEXT" value="29" />
         </counts>
       </usages-collector>
@@ -71,8 +71,8 @@
         <entry file="file://$PROJECT_DIR$/BIP/mnemonic-improvement.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="383">
-                <caret line="161" column="4" lean-forward="true" selection-start-line="161" selection-start-column="4" selection-end-line="161" selection-end-column="4" />
+              <first_editor relative-caret-position="533">
+                <caret line="173" lean-forward="true" selection-start-line="173" selection-end-line="173" />
               </first_editor>
               <second_editor />
             </state>
@@ -226,7 +226,21 @@
       <option name="project" value="LOCAL" />
       <updated>1590075405849</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="BIP next part">
+      <created>1590075797777</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1590075797777</updated>
+    </task>
+    <task id="LOCAL-00012" summary="BIP next part">
+      <created>1590079030311</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1590079030311</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TodoView">
@@ -295,8 +309,8 @@
     <entry file="file://$PROJECT_DIR$/BIP/mnemonic-improvement.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="383">
-            <caret line="161" column="4" lean-forward="true" selection-start-line="161" selection-start-column="4" selection-end-line="161" selection-end-column="4" />
+          <first_editor relative-caret-position="533">
+            <caret line="173" lean-forward="true" selection-start-line="173" selection-end-line="173" />
           </first_editor>
           <second_editor />
         </state>
