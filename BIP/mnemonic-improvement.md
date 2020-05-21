@@ -105,7 +105,7 @@ a limit for the maximum number of total shares in the secret sharing scheme, dep
 
 Range for random index selection MUST be limited by maximal number of total shares.
 
-### Example of implementation
+### Reference implementation
 
 
 <code>
