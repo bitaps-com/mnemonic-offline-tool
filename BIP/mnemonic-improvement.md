@@ -62,6 +62,8 @@ Five dices with 6 sides give 6 ^ 5 = 7776 possible combinations. Wordlist is 204
 for  7776 combinations, with 2048 * 3 = 6144 good values, rest range (6144, 7776] are excluded.
 Each word in the table corresponds to 3 roll combinations.
 
+[BIP39 Dice word list](https://bitaps.com/dice/wordlist)
+
 
 ### Splitting mnemonic code
 
