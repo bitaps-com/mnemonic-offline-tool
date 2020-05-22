@@ -20,7 +20,7 @@ Mnemonic codes proposed in BIP39 are the most successful solution for storing se
 A key factor is the use of a human-readable format and the zero chance of information loss due to typos. 
 This BIP is aimed at solving the problem by storing the code by dividing it into parts according to the threshold 
 scheme for sharing the secret, as well as a description of how the mnemonic code can be generated manually without 
-trusting any hardware/software random generators. The scope of application of this BIP is the creation and store
+trusting any hardware/software random generators. The scope of application of this BIP is the creation and storage of
  cryptocurrency wallets backup for personal use.
 
 
