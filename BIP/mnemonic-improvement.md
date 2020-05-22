@@ -17,46 +17,46 @@ This BIP describes development recommendations for the generation of determinist
 ## Motivation
 
 Mnemonic codes proposed in BIP39 are the most successful solution for storing secret keys. 
-A key factor is the use of a human-readable format and the zero chance of information loss due to typos.
-This BIP is aimed at solving the problem by storing the code by dividing it into parts according 
-to the threshold scheme for sharing the secret, as well as a description of how the mnemonic code 
-can be generated manually without trusting any hardware/software random generators. Scope of application of this BIP 
-is creation and storage cryptocurrency wallets for personal use.
+A key factor is the use of a human-readable format and the zero chance of information loss due to typos. 
+This BIP is aimed at solving the problem by storing the code by dividing it into parts according to the threshold 
+scheme for sharing the secret, as well as a description of how the mnemonic code can be generated manually without 
+trusting any hardware/software random generators. The scope of application of this BIP is the creation and store
+ cryptocurrency wallets backup for personal use.
 
 
 ### BIP39 checksum
 
-BIP39 describes an algorithm for converting a secret value (BIP32 seed) into a mnemonic code.
-This algorithm provides the calculation of the checksum, which is written at the end and affects the last word in the code.
-This checksum is excessive since there is no practical benefit from it. 
-The number of bits in a checksum is so small that it does not allow you to restore the word order in case it is lost.
-In the case of a typo, the BIP39 wordlist itself allows you to correct it. 
-Additionally, the presence of a checklist makes it impossible to generate a mnemonic phrase manually for wallets that 
-strictly control checksum. Checksum MUST be ignored by Wallets to enable manually generation 
-and protect privacy with opportunity for plausible deniability.
+BIP39 describes an algorithm for converting a secret value (BIP32 seed) into a mnemonic code. This algorithm provides 
+the calculation of the checksum, which is written at the end and affects the last word in the code. This checksum 
+is excessive since there is no practical benefit from it. The number of bits in a checksum is so small that it does
+ not allow you to restore the word order in case it is lost. In the case of a typo, the BIP39 wordlist itself allows
+  you to correct it. Additionally, the presence of a checklist makes it impossible to generate a mnemonic phrase 
+  manually for wallets that strictly control checksum. The checksum MUST be ignored by Wallets to enable manually
+   generation and protect privacy with the opportunity for plausible deniability.
 
 
 
 ### Manually generation
 
-If you do not trust to any software random number generator due possible bugs or backdoors, you can generate a 
-mnemonic code using dice yourself. Critical to security is the use of random numbers. Do not try to select words from 
-the mnemonic dictionary in other ways. Even if it seems to you that you are doing this in an unpredictable way, 
-most likely you are mistaken.
+The mnemonic phrase is inherently a backup of access to the wallet. To ensure reliable backup storage developed 
+metal backups that allow you to save information after exposure to aggressive environments and temperatures. 
+But this approach does not protect mnemonic code against theft or single point trust problem. 
+The threshold secret sharing scheme significantly improves secure backup storage against a single storage point trust problem.
+
+In cryptography, several secret sharing schemes are known. The most famous is Shamir's secret scheme and Blakley's scheme.
+This BIP is based on Shamir's scheme. With a more detailed description of Shamir's scheme, can be found on 
+If you do not trust any software random number generator due to possible bugs or backdoors, you can generate a 
+mnemonic code using dice yourself. Critical to security is the use of random numbers. Do not try to select words from the mnemonic dictionary in other ways. Even if it seems to you that you are unpredictably doing this, most likely you are mistaken.
 
 In previously known dice generation methods, a large secret number is generated and formatted as a hexadecimal string.
-Later this hexadecimal string is converted into a mnemonic phrase using software tool. 
+Later this hexadecimal string is converted into a mnemonic phrase using a software tool. 
 
-This BIP suggests refusing to use cheksum verification and enable ability  to generate a mnemonic phrase using dice in 
-a simpler and more obvious way using Dice wordlist table.
+This BIP suggests refusing to use checksums verification and enable the ability  to generate a mnemonic phrase using dice in 
+a simpler and more obvious way using the Dice wordlist table.
 
-In the proposed generation scheme, it is most convenient to use 5 cubes at a time. If you have only 1 die, you should 
-make 5 consecutive throws to generate 1 word. With manual dice code generation, it is not possible to calculate the 
-checksum, which is written at the end in accordance with BIP39. If the wallet in which you plan to use your mnemonic 
-code requires the correct code checksum, then you should adjust last word to correct checksum using software tool.
+In the proposed generation scheme, it is most convenient to use 5 cubes at a time. If you have only 1 die, you should make 5 consecutive throws to generate 1 word. With manual dice code generation, it is not possible to calculate the checksum, which is written at the end in accordance with BIP39. If the wallet in which you plan to use your mnemonic code requires the correct code checksum, then you should adjust the last word to correct checksum using a software tool.
 
-You should select 12 / 15 / 18 / 21 or 24 (recommended) words using dice rolls and dice wordlist table. If your throw 
-result is not in the list, just ignore and continue. Some combinations are excluded for uniform probability distribution.
+You should select 12 / 15 / 18 / 21 or 24 (recommended) words using dice rolls and dice wordlist table. If your throw result is not on the list, just ignore and continue. Some combinations are excluded for a uniform probability distribution.
 
 Five dices with 6 sides give 6 ^ 5 = 7776 possible combinations. Wordlist is 2048 words, that overlaps three times range 
 for  7776 combinations, with 2048 * 3 = 6144 good values, rest range (6144, 7776] are excluded.
@@ -81,13 +81,13 @@ There are already exists two great implementation of the Shamir scheme for mnemo
 and second one is [shamir39](https://github.com/iancoleman/shamir39/blob/master/specification.md) from 
 [iancoleman](https://github.com/iancoleman).
 
-The main idea in creating this BIP is to create the most simple and understandable scheme for mass use.
-SLIP39 is a complicated scheme with division into groups and division within groups into shares, checksum is used to validate shares. 
+The main idea of creating this BIP is to create the most simple and understandable scheme for mass use.
+SLIP39 is a complicated scheme with division into groups and division within groups into shares, a checksum is used to validate shares. 
 This scheme is more likely focused on corporate users. Iancoleman scheme is more simple and more suitable for mass use.
 
-This BIP propose technical implementation Shamir's secret sharing scheme applied separately to each byte of the 
-shared secret and GF(256) is used as the underlying finite field. Secret stored in share f(0). On GF(256) finite field 
-255 shares is maximal possible. For the need for personal use, this is more than enough.
+This BIP proposes technical implementation Shamir's secret sharing scheme applied separately to each byte of the shared
+ secret and GF(256) is used as the underlying finite field. Secret stored in share f(0). On GF(256) finite field 
+255 shares are maximal possible. For the need for personal use, this is more than enough.
 Share index (x coordinate) should be randomly selected to prevent any information leak about sharing split schema.
 
 ### Mnemonic code share
@@ -105,7 +105,7 @@ a limit for the maximum number of total shares in the secret sharing scheme, dep
     - 21 words: 7 bits -> 127 total shares
     - 24 words: 8 bits -> 255 total shares
 
-Range for random index selection MUST be limited by maximal number of total shares.
+The range for random index selection MUST be limited by the maximal number of total shares.
 
 ### Reference implementation
 
