@@ -24,18 +24,6 @@ trusting any hardware/software random generators. The scope of application of th
  cryptocurrency wallets backup for personal use.
 
 
-### BIP39 checksum
-
-BIP39 describes an algorithm for converting a secret value (BIP32 seed) into a mnemonic code. This algorithm provides 
-the calculation of the checksum, which is written at the end and affects the last word in the code. This checksum 
-is excessive since there is no practical benefit from it. The number of bits in a checksum is so small that it does
- not allow you to restore the word order in case it is lost. In the case of a typo, the BIP39 wordlist itself allows
-  you to correct it. Additionally, the presence of a checklist makes it impossible to generate a mnemonic phrase 
-  manually for wallets that strictly control checksum. The checksum MUST be ignored by Wallets to enable manually
-   generation and protect privacy with the opportunity for plausible deniability.
-
-
-
 ### Manually generation
 
 The mnemonic phrase is inherently a backup of access to the wallet. To ensure reliable backup storage developed 
@@ -51,10 +39,13 @@ mnemonic code using dice yourself. Critical to security is the use of random num
 In previously known dice generation methods, a large secret number is generated and formatted as a hexadecimal string.
 Later this hexadecimal string is converted into a mnemonic phrase using a software tool. 
 
-This BIP suggests refusing to use checksums verification and enable the ability  to generate a mnemonic phrase using dice in 
-a simpler and more obvious way using the Dice wordlist table.
+This BIP suggests generate a mnemonic phrase using dice in a simpler and more obvious way using the Dice wordlist table.
 
-In the proposed generation scheme, it is most convenient to use 5 cubes at a time. If you have only 1 die, you should make 5 consecutive throws to generate 1 word. With manual dice code generation, it is not possible to calculate the checksum, which is written at the end in accordance with BIP39. If the wallet in which you plan to use your mnemonic code requires the correct code checksum, then you should adjust the last word to correct checksum using a software tool.
+In the proposed generation scheme, it is most convenient to use 5 cubes at a time. If you have only 1 die, you should make 
+5 consecutive throws to generate 1 word. With manual dice code generation, it is not possible to calculate the checksum, 
+which is written at the end in accordance with BIP39.  Wallets and splitting schema suggested below, requires the correct mnemonic code checksum,
+the last word MUST be adjusted to correct checksum using a software tool. In case user provided incorrect last word,
+ wallet software should adjust correct checksum on the fly before converting mnemonic to binary seed. 
 
 You should select 12 / 15 / 18 / 21 or 24 (recommended) words using dice rolls and dice wordlist table. If your throw result is not on the list, just ignore and continue. Some combinations are excluded for a uniform probability distribution.
 
@@ -65,6 +56,16 @@ Each word in the table corresponds to 3 roll combinations.
 [BIP39 Dice word list](https://bitaps.com/dice/wordlist)
 
 
+### BIP39 checksum
+
+BIP39 describes an algorithm for converting a secret value (BIP32 seed) into a mnemonic code. This algorithm provides 
+the calculation of the checksum, which is written at the end and affects the last word in the code. This checksum 
+is excessive since there is no practical benefit from it. The number of bits in a checksum is so small that it does
+ not allow you to restore the word order in case it is lost. In the case of a typo, the BIP39 wordlist itself allows
+  you to correct it. Additionally, the presence of a checklist makes it impossible to generate a mnemonic phrase 
+  manually for wallets that strictly control checksum. The checksum MUST be adjusted on the fly by Wallets to enable manually
+   generation and protect privacy with the opportunity for plausible deniability.
+   
 ### Splitting mnemonic code
 
 The mnemonic phrase is inherently a backup of access to the wallet. To ensure reliable backup storage developed 
